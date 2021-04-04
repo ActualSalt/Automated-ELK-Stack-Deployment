@@ -23,10 +23,10 @@ The configuration details of each machine may be found below.
 
 | Name     |   Function  | IP Address | Operating System |
 |----------|-------------|------------|------------------|
-| Jump Box | Gateway     | 10.0.0.4   | Linux            |
-| DVWA 1   | Web Server  | 10.0.0.5   | Linux            |
-| DVWA 2   | Web Server  | 10.0.0.6   | Linux            |
-| ELK      | Monitoring  | 10.0.0.8   | Linux            |
+| Jump Box | Gateway     | 10.0.0.7   | Linux            |
+| DVWA 1   | Web Server  | 10.0.0.10  | Linux            |
+| DVWA 2   | Web Server  | 10.0.0.11  | Linux            |
+| ELK      | Monitoring  | 10.2.0.4   | Linux            |
 
 In addition to the above, Azure has provisioned a **load balancer** in front of all machines except for the jump box. The load balancer's targets are organized into the following availability zones:
 - **Availability Zone 1**: DVWA 1 + DVWA 2
@@ -43,7 +43,7 @@ To use this playbook, one must log into the Jump Box, then issue: `ansible-playb
 ### Access Policies
 The machines on the internal network are _not_ exposed to the public Internet. 
 
-Only the **jump box** machine can accept connections from the Internet. Access to this machine is only allowed from the IP address `64.72.118.76`
+Only the **jump box** machine can accept connections from the Internet. Access to this machine is only allowed from the IP address `104.40.2.245`
 - **Note**: _Your answer will be different!_
 
 Machines _within_ the network can only be accessed by **each other**. The DVWA 1 and DVWA 2 VMs send traffic to the ELK server.
@@ -52,29 +52,26 @@ A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | Yes                 | 64.72.118.76         |
-| ELK      | No                  | 10.0.0.1-254         |
-| DVWA 1   | No                  | 10.0.0.1-254         |
-| DVWA 2   | No                  | 10.0.0.1-254         |
+| Jump Box | Yes                 | 104.40.2.245         |
+| ELK      | No                  | 10.2.0.4-254         |
+| DVWA 1   | No                  | 10.0.0.10-254        |
+| DVWA 2   | No                  | 10.0.0.11-254        |
 
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
 
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+- A quick and robust way to set up an standardized configuration on, potentially, multiple machines.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+- Docker and Ansible on Jumpbox
+- Elk ELK VM to host 
+- Run Playbook
 
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
 - _TODO_: Update the image file path with the name of your screenshot of docker ps output:
-
-  ![STUDENT TODO: Update image file path](Images/docker_ps_output.png)
-
 
 
 The playbook is duplicated below.
@@ -133,7 +130,7 @@ The playbook is duplicated below.
 ```
 
 ### Target Machines & Beats
-This ELK server is configured to monitor the DVWA 1 and DVWA 2 VMs, at `10.0.0.5` and `10.0.0.6`, respectively.
+This ELK server is configured to monitor the DVWA 1 and DVWA 2 VMs, at `10.0.0.10` and `10.0.0.11`, respectively.
 
 We have installed the following Beats on these machines:
 - Filebeat
