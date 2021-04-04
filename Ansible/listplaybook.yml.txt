@@ -19,7 +19,6 @@
               name: docker
               state: present
 
-    # Creates the number of containers defined by the variable create_containers, using values from vars file
     - name: download and launch a docker web container
       docker_container:
           name: dvwa
